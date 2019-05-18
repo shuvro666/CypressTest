@@ -14,6 +14,19 @@ describe('Cypress Testing',() => {
     });
     it('should verify user is logged in', function(){
       cy.url().should('include','my-account/profile');
+      cy . get ( '.bdf-cookie-policy-accept' ). click ();
+      cy . contains ( 'edit' ). click ()
+      cy . get ( '# 521aa7b40247454e815f9144df398f00_title_0_1' ). click ()
+      cy . get ( 'input [name = "521aa7b40247454e815f9144df398f00_firstname"]' ). clear (). type ( 'Shuvro' )
+      cy . get ( 'input [name = "521aa7b40247454e815f9144df398f00_lastname"]' ). clear (). type ( 'Das' )
+      cy . get ( '[name = "521aa7b40247454e815f9144df398f00_birthday_d"]' ). select ( '1' );
+      cy . get ( '[name = "521aa7b40247454e815f9144df398f00_birthday_m"]' ). select ( '12' );
+      cy . get ( '[name = "521aa7b40247454e815f9144df398f00_birthday_y"]' ). select ( '1989' );
+
+      cy . contains ( 'save changes' ). click ()
+      // verification
+      cy . get ( '#fullname' ). contains ( 'Shuvro das' )
+      cy . get ( '.profile-box-row' ). contains ( '01 .12.1989 ' )
     })
 
 });
